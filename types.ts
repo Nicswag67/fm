@@ -1,14 +1,25 @@
-export type Market = {
-  id: string;
-  league: 'NFL' | 'NBA' | 'MLB' | 'Premier League' | string;
-  label: string;
-  description: string;
-  closesAt: string; // ISO
-  lastPrice: number; // 0..1
-  history: { t: number; price: number }[];
-  status: 'open' | 'closed' | 'settled';
-};
+// types.ts
+export type StatCategory =
+  | "Points"
+  | "Rebounds"
+  | "Assists"
+  | "Passing Yards"
+  | "Rushing Yards"
+  | "Receiving Yards"
+  | "Goals"
+  | "Shots";
 
-export type Position = { qty: number; avg: number };
-export type Order = { id: string; marketId: string; side: 'BUY'|'SELL'; qty: number; price: number; ts: number };
-export type User = { id: string; name: string; cash: number };
+export interface PlayerStatMarket {
+  id: string;
+  playerName: string;
+  team: string;
+  opponent: string;
+  startTime: string; // ISO date
+  league: "NBA" | "NFL" | "NHL" | "MLB" | "EPL";
+  stat: StatCategory;
+  line: number; // e.g., Over/Under line (e.g., 24.5 points)
+  price: number; // quoted price / implied probability (0..1 or 0..100 depending on your design)
+  liquidity?: number;
+  status?: "open" | "suspended" | "settled";
+  headshotUrl?: string;
+}
