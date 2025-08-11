@@ -11,7 +11,6 @@ export const metadata = {
   // …keep existing icons/metadata
 };
 
-};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
