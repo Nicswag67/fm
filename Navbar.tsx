@@ -11,7 +11,7 @@ export default function Navbar(){
   const cash = useFM(s=>s.user.cash);
   const nav = [
     {href:'/', label:'Home'},
-    {href:'/markets', label:'Markets'},
+    {href:'/markets', label:'Player Markets'},
     {href:'/portfolio', label:'Portfolio'},
     {href:'/about', label:'About'},
     {href:'/legal', label:'Compliance'},
