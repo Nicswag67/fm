@@ -1,0 +1,6 @@
+import Image from 'next/image';
+// ...
+<Link href="/" className="flex items-center gap-2">
+  <Image src="/logo.svg" alt="Fan Market" width={28} height={28} priority />
+  <span className="font-semibold tracking-tight">Fan Market</span>
+</Link>
