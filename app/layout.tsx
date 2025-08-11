@@ -1,20 +1,19 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+// app/layout.tsx
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'Fan Market',
-  description: 'Sports stat prediction market – Apple/Webull inspired',
+  title: "Fan Market – Invest in Your Favorite Players’ Stats",
+  description:
+    "A market for fans. Invest in player stat outcomes with simple, intuitive markets.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body>
-        <Navbar/>
-        <main className="section py-10">{children}</main>
-        <Footer/>
+      <body className="bg-black text-white antialiased">
+        {children}
       </body>
     </html>
   );
