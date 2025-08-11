@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+body { @apply bg-[color:var(--bg,#0a0a0a)] text-foreground antialiased; }
+
+/* Apple/Webull-ish feel */
+.glass { @apply bg-white/5 backdrop-blur border border-white/10 shadow-glass; }
+.section { @apply max-w-7xl mx-auto px-4 md:px-6; }
+.kbd { @apply px-1.5 py-0.5 rounded border border-white/10 text-xs; }
