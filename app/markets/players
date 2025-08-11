@@ -1,0 +1,84 @@
+// app/markets/page.tsx
+import PlayerMarketCard from "../../components/PlayerMarketCard";
+import { playerMarkets } from "../../mock";
+import { StatCategory } from "../../types";
+
+export const dynamic = "force-static";
+
+const CATS: StatCategory[] = [
+  "Points",
+  "Rebounds",
+  "Assists",
+  "Passing Yards",
+  "Rushing Yards",
+  "Receiving Yards",
+  "Goals",
+  "Shots",
+];
+
+export default function MarketsPage({
+  searchParams,
+}: {
+  searchParams?: { q?: string; cat?: string };
+}) {
+  const q = (searchParams?.q ?? "").toLowerCase();
+  const cat = (searchParams?.cat ?? "").toLowerCase();
+
+  const data = playerMarkets.filter((m) => {
+    const matchesQ =
+      !q ||
+      m.playerName.toLowerCase().includes(q) ||
+      m.team.toLowerCase().includes(q) ||
+      m.opponent.toLowerCase().includes(q) ||
+      m.league.toLowerCase().includes(q);
+
+    const matchesCat = !cat || m.stat.toLowerCase() === cat;
+    return matchesQ && matchesCat;
+  });
+
+  return (
+    <main className="mx-auto max-w-6xl px-6 py-10">
+      <h1 className="text-3xl md:text-5xl font-bold text-white">Player Markets</h1>
+      <p className="mt-3 text-white/70">
+        Browse player stat markets. Filter by category or search by player/team.
+      </p>
+
+      <form className="mt-6 flex flex-col md:flex-row gap-3">
+        <input
+          type="text"
+          name="q"
+          placeholder="Search players, teams, league…"
+          defaultValue={q}
+          className="flex-1 rounded-2xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder-white/40 focus:outline-none"
+        />
+        <select
+          name="cat"
+          defaultValue={cat}
+          className="rounded-2xl bg-white/5 border border-white/10 px-4 py-3 text-white"
+        >
+          <option value="">All stats</option>
+          {CATS.map((c) => (
+            <option key={c} value={c.toLowerCase()}>
+              {c}
+            </option>
+          ))}
+        </select>
+        <button
+          type="submit"
+          className="rounded-2xl px-5 py-3 bg-white text-black font-medium hover:bg-white/90 transition"
+        >
+          Apply
+        </button>
+      </form>
+
+      <section className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {data.map((m) => (
+          <PlayerMarketCard key={m.id} m={m} />
+        ))}
+        {data.length === 0 && (
+          <div className="col-span-full text-white/60">No markets match your filters.</div>
+        )}
+      </section>
+    </main>
+  );
+}
