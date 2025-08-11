@@ -1,18 +1,48 @@
-import { Market } from './types';
+// mock.ts
+import type { PlayerStatMarket } from "./types";
 
-export const makeSeries = (n: number, min: number, max: number) => {
-  const out: { t:number; price:number }[] = [];
-  let v = (min+max)/2;
-  for(let i=0;i<n;i++){
-    v += (Math.random()-.5)*.02;
-    v = Math.max(min, Math.min(max, v));
-    out.push({ t:i, price: Number(v.toFixed(2)) });
+export const playerMarkets: PlayerStatMarket[] = [
+  {
+    id: "nba-2025-08-12-den-phx-murray-pts",
+    playerName: "Jamal Murray",
+    team: "DEN",
+    opponent: "PHX",
+    startTime: "2025-08-12T19:30:00-06:00",
+    league: "NBA",
+    stat: "Points",
+    line: 24.5,
+    price: 0.56,
+    liquidity: 12000,
+    status: "open",
+    headshotUrl: "/players/murray.png"
+  },
+  {
+    id: "nba-2025-08-12-den-phx-jokic-reb",
+    playerName: "Nikola Jokić",
+    team: "DEN",
+    opponent: "PHX",
+    startTime: "2025-08-12T19:30:00-06:00",
+    league: "NBA",
+    stat: "Rebounds",
+    line: 12.5,
+    price: 0.52,
+    liquidity: 15000,
+    status: "open",
+    headshotUrl: "/players/jokic.png"
+  },
+  {
+    id: "nfl-2025-09-08-den-kc-wilson-pass",
+    playerName: "Bo Nix",
+    team: "DEN",
+    opponent: "KC",
+    startTime: "2025-09-08T18:20:00-06:00",
+    league: "NFL",
+    stat: "Passing Yards",
+    line: 235.5,
+    price: 0.48,
+    liquidity: 9800,
+    status: "open",
+    headshotUrl: "/players/nix.png"
   }
-  return out;
-};
-
-export const seedMarkets = (): Market[] => ([
-  { id:'nfl-2025-kc-den', league:'NFL', label:'Broncos vs. Chiefs – Moneyline (DEN to win)', description:'Will the Denver Broncos win on Sep 14, 2025?', closesAt:'2025-09-14T18:00:00Z', lastPrice:.46, history: makeSeries(60,.38,.52), status:'open' },
-  { id:'mlb-2025-nym-lad', league:'MLB', label:'Dodgers @ Mets – Over/Under 8.5 (Over)', description:'Will total runs be 9 or more?', closesAt:'2025-08-22T23:59:00Z', lastPrice:.58, history: makeSeries(60,.44,.64), status:'open' },
-  { id:'prem-2025-ars-che', league:'Premier League', label:'Arsenal vs Chelsea – Both Teams To Score', description:'Will both teams score on Aug 31, 2025?', closesAt:'2025-08-31T15:00:00Z', lastPrice:.54, history: makeSeries(60,.42,.62), status:'open' }
-]);
+  // add more…
+];
