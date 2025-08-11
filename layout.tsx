@@ -3,9 +3,14 @@ import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-export const metadata: Metadata = {
-  title: 'Fan Market',
-  description: 'Sports stat prediction market – Apple/Webull inspired',
+// layout.tsx
+export const metadata = {
+  title: "Fan Market – Invest in Your Favorite Players’ Stats",
+  description:
+    "A market for fans. Invest in player stat outcomes with simple, intuitive markets.",
+  // …keep existing icons/metadata
+};
+
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
